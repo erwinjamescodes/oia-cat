@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alternating GIFs</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: green;
+        cursor: pointer;
+      }
+      .gif-container {
+        width: 300px;
+        height: 300px;
+      }
+      .gif {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gif-container">
+      <img src="pause.gif" alt="GIF" class="gif" id="gif-display" />
+      <audio id="sound" src="sound.mp3" loop></audio>
+    </div>
+
+    <script>
+      const gifDisplay = document.getElementById("gif-display");
+      const soundElement = document.getElementById("sound");
+      const pauseGif = "pause.gif";
+      const cutGif = "cut.gif";
+      let isPaused = true; // Start with pause.gif
+
+      document.body.addEventListener("click", () => {
+        // Toggle between pause and cut states
+        isPaused = !isPaused;
+
+        // Change the image source based on the current state
+        if (isPaused) {
+          gifDisplay.src = pauseGif;
+          soundElement.pause(); // Stop the sound when showing pause.gif
+        } else {
+          gifDisplay.src = cutGif;
+          soundElement.play(); // Play the sound when showing cut.gif
+        }
+      });
+    </script>
+  </body>
+</html>
